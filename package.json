@@ -2,19 +2,26 @@
   "name": "pagination-primer",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:build": "tsc -w",
+    "start:run": "nodemon dist/server.js",
+    "start": "concurrently pnpm:start:*"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.10.0",
   "dependencies": {
+    "@types/dotenv": "^8.2.3",
+    "concurrently": "^9.2.0",
+    "dotenv": "^17.2.1",
     "express": "^5.1.0",
-    "mysql2": "^3.14.3"
+    "mysql2": "^3.14.3",
+    "nodemon": "^3.1.10"
   },
   "devDependencies": {
+    "@types/express": "^5.0.3",
     "@types/node": "^24.1.0"
   }
 }
