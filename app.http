@@ -1,9 +1,0 @@
-###
-# limit-offset method
-GET http://localhost:4000/offset-users
-
-###
-# cursor method
-GET http://localhost:4000/cursor-users
-
-###

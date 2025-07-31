@@ -6,7 +6,7 @@ const mainRouter = Router();
 
 //get users with limit-offset method
 mainRouter.get(
-  "/offset-users",
+  "/limit-offset",
   async (request: Request, response: Response) => {
     try {
       const connection = await pool.getConnection();
@@ -39,7 +39,7 @@ mainRouter.get(
 
 //get users with cursor method
 mainRouter.get(
-  "/cursor-users",
+  "/cursor",
   async (request: Request, response: Response) => {
     try {
       const connection = await pool.getConnection();
