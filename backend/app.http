@@ -1,0 +1,9 @@
+###
+# limit-offset method
+GET http://localhost:4000/limit-offset
+
+###
+# cursor method
+GET http://localhost:4000/cursor
+
+###

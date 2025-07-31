@@ -14,9 +14,11 @@
   "packageManager": "pnpm@10.10.0",
   "dependencies": {
     "@types/dotenv": "^8.2.3",
+    "@types/handlebars": "^4.1.0",
     "concurrently": "^9.2.0",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "handlebars": "^4.7.8",
     "mysql2": "^3.14.3",
     "nodemon": "^3.1.10"
   },
