@@ -1,4 +1,8 @@
 ###
+# no pagination
+GET http://localhost:4000/no-pagination
+
+###
 # limit-offset method
 GET http://localhost:4000/limit-offset
 
