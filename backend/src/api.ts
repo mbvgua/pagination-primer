@@ -18,9 +18,9 @@ mainRouter.get(
         status: "success",
         message: "Users succesfully retrieved",
         data: {
-          totalItems: users.length,
-          totalPages: null,
           currentPage: null,
+          totalPages: null,
+          totalItems: users.length,
           users,
         },
         metadata: null,
@@ -41,7 +41,8 @@ mainRouter.get(
 mainRouter.get(
   "/limit-offset",
   async (request: Request, response: Response) => {
-    const { page, limit } = request.body;
+    const page = parseInt(request.query.page as string) || 1;
+    const limit = parseInt(request.query.limit as string) || 10;
     const offset = (page - 1) * limit;
 
     try {
@@ -55,7 +56,7 @@ mainRouter.get(
       //get paginated query based on user input
       const [rows]: any = await connection.query(
         "SELECT * FROM users LIMIT ? OFFSET ?;",
-        [parseInt(limit), offset],
+        [limit, offset],
       );
       const users = rows as IUsers[];
       const totalPages = Math.ceil(totalItems / limit);
@@ -67,6 +68,7 @@ mainRouter.get(
         data: { users },
         metadata: {
           currentPage: +page,
+          nextPage: +page + 1,
           totalPages,
           totalItems,
         },
@@ -86,7 +88,8 @@ mainRouter.get(
 //get users with cursor method
 mainRouter.get("/cursor", async (request: Request, response: Response) => {
   try {
-    const { user_id } = request.body;
+    const cursor_id = parseInt(request.query.cursor_id as string) || 1;
+    const limit = parseInt(request.query.limit as string) || 10;
 
     //get total number of items in db
     const connection = await pool.getConnection();
@@ -95,11 +98,12 @@ mainRouter.get("/cursor", async (request: Request, response: Response) => {
     );
     const totalItems = results[0].total;
 
-    await connection.execute(`SET @user_id=7;`);
     const [rows]: any = await connection.query(
-      `SELECT * FROM users WHERE id>@user_id LIMIT 10; `,
+      `SELECT * FROM users WHERE id > ? LIMIT ?;`,
+      [cursor_id, limit],
     );
     const users = rows as IUsers;
+    const totalPages = Math.ceil(totalItems / limit);
 
     return response.status(200).json({
       code: 200,
@@ -107,8 +111,9 @@ mainRouter.get("/cursor", async (request: Request, response: Response) => {
       message: "Users succesfully retrieved",
       data: { users },
       metadata: {
-        //currentPage: +page,
-        //totalPages,
+        currentCursorId: +cursor_id,
+        nextCursorId: +cursor_id + 1,
+        totalPages,
         totalItems,
       },
     });
