@@ -5,6 +5,12 @@ GET http://localhost:4000/no-pagination
 ###
 # limit-offset method
 GET http://localhost:4000/limit-offset
+Content-Type: application/json
+
+{
+    "page":"2",
+    "limit":"10"
+}
 
 ###
 # cursor method
