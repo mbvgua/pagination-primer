@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { NoPages } from './components/no-pages/no-pages';
+import { Unfiltered } from './components/unfiltered/unfiltered';
 
 export const routes: Routes = [
   {
     path: '',
-    component: NoPages,
+    component: Unfiltered,
     title: 'No Pagination',
   },
   {

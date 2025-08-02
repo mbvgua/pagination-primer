@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NoPages } from './no-pages';
+import { Unfiltered } from './unfiltered';
 
-describe('NoPages', () => {
-  let component: NoPages;
-  let fixture: ComponentFixture<NoPages>;
+describe('Unfiltered', () => {
+  let component: Unfiltered;
+  let fixture: ComponentFixture<Unfiltered>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NoPages]
+      imports: [Unfiltered]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NoPages);
+    fixture = TestBed.createComponent(Unfiltered);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
