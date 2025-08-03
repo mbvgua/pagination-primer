@@ -15,6 +15,11 @@ export class PaginationService {
   }
 
   // get with limit-offset
+  getWithLimitOffset(page: string, limit: string): Observable<any> {
+    return this.http.get(
+      this.baseUrl + `limit-offset?page=${page}&limit=${limit}`,
+    );
+  }
 
   // get with cursor based pagination
 }
