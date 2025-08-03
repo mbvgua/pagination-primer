@@ -10,11 +10,14 @@ export interface UsersResponse {
   status: string;
   message: string;
   data: {
-    totalItems?: number;
-    totalPages?: number | null;
-    currentPage?: number | null;
     users?: [];
     error?: string;
   };
-  metadata: number | null;
+  metadata: {
+    previousPage?: number;
+    currentPage?: number;
+    nextPage?: number;
+    totalPages?: number;
+    totalItems?: number;
+  };
 }

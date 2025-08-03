@@ -1,3 +1,90 @@
-<p>limit-offset works!</p>
+<div>
+  <!--begin notification-->
+  @if (message()) {
+    @if (status() == "success") {
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong> Congratulations!</strong> {{ message() }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+    } @else if (status() == "error") {
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong> Congratulations!</strong> {{ message() }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+    }
+  }
+  <!--end notification-->
 
+  <!--begin table-->
+  <div>
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th class="th-md">Id</th>
+          <th class="th-md">Username</th>
+          <th class="th-md">Email</th>
+          <th class="th-md">Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users(); track user.id) {
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.location }}</td>
+          </tr>
+        }
+      </tbody>
 
+      <tbody></tbody>
+    </table>
+  </div>
+  <!--end table section-->
+
+  <!--start pagination icons-->
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <!--if on the first page, you cannot go to previous-->
+      @if (current_page() === 1) {
+        <li class="page-item disabled">
+          <a class="page-link" (click)="previousPage()">Previous</a>
+        </li>
+      } @else {
+        <li class="page-item">
+          <a class="page-link" (click)="previousPage()">Previous</a>
+        </li>
+      }
+
+      <!--start loop of total pages-->
+      @for (page of pages(); track $index) {
+        <li class="page-item">
+          <a class="page-link" (click)="gotoPage(page)">{{ page }}</a>
+        </li>
+      }
+      <!--end loop of total pages-->
+
+      <!--if on the last page, you cannot go to next-->
+      @if (current_page() === total_pages()) {
+        <li class="page-item disabled">
+          <a class="page-link" (click)="nextPage()">Next</a>
+        </li>
+      } @else {
+        <li class="page-item">
+          <a class="page-link" (click)="nextPage()">Next</a>
+        </li>
+      }
+    </ul>
+  </nav>
+  <!--end pagination icons-->
+</div>
