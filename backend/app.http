@@ -8,6 +8,6 @@ GET http://localhost:4000/limit-offset?page=2&limit=10
 
 ###
 # cursor method
-GET http://localhost:4000/cursor?cursor_id=19&limit=10
+GET http://localhost:4000/cursor?cursor_id=40&limit=10
 
 ###
