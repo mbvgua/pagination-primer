@@ -22,4 +22,9 @@ export class PaginationService {
   }
 
   // get with cursor based pagination
+  getWithCursor(cursor_id: string, limit: string): Observable<any> {
+    return this.http.get(
+      this.baseUrl + `cursor?cursor_id=${cursor_id}&limit=${limit}`,
+    );
+  }
 }

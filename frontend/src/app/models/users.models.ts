@@ -14,9 +14,15 @@ export interface UsersResponse {
     error?: string;
   };
   metadata: {
+    //limit-offset
     previousPage?: number;
     currentPage?: number;
     nextPage?: number;
+    //cursor
+    previousCursorId?: number;
+    currentCursorId?: number;
+    nextCursorId?: number;
+    //general
     totalPages?: number;
     totalItems?: number;
   };

@@ -90,7 +90,7 @@ mainRouter.get(
 //get users with cursor method
 mainRouter.get("/cursor", async (request: Request, response: Response) => {
   try {
-    const cursor_id = parseInt(request.query.cursor_id as string) || 1;
+    const cursor_id = parseInt(request.query.cursor_id as string) || 0;
     const limit = parseInt(request.query.limit as string) || 10;
 
     //get total number of items in db
@@ -114,7 +114,11 @@ mainRouter.get("/cursor", async (request: Request, response: Response) => {
       data: { users },
       metadata: {
         currentCursorId: +cursor_id,
-        nextCursorId: +cursor_id + 1,
+        //HACK: used ternary operators here for some minor error-handling
+        //very proud of myself
+        nextCursorId:
+          +cursor_id + limit > totalItems ? +cursor_id : +cursor_id + limit,
+        previousCursorId: +cursor_id - limit,
         totalPages,
         totalItems,
       },
