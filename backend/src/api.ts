@@ -41,6 +41,7 @@ mainRouter.get(
 mainRouter.get(
   "/limit-offset",
   async (request: Request, response: Response) => {
+    //defaults to page 1 and limit of 10 if none passed
     const page = parseInt(request.query.page as string) || 1;
     const limit = parseInt(request.query.limit as string) || 10;
     const offset = (page - 1) * limit;
@@ -67,6 +68,7 @@ mainRouter.get(
         message: "Users succesfully retrieved",
         data: { users },
         metadata: {
+          previousPage: +page - 1,
           currentPage: +page,
           nextPage: +page + 1,
           totalPages,

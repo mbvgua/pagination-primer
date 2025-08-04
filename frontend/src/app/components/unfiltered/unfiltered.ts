@@ -14,15 +14,18 @@ export class Unfiltered implements OnInit {
   // using signals for reactivity
   users = signal<IUsers[]>([]);
   message = signal<string>('');
+  status = signal<string>('');
 
   ngOnInit(): void {
     this.paginationService.getWithNoPagination().subscribe(
       (response: UsersResponse) => {
         this.users.set(response.data.users ?? []);
-        console.log(this.users());
+        this.message.set(response.message);
+        this.status.set(response.status);
       },
       (error: UsersResponse) => {
-        this.message.set(error.data.error ?? '');
+        this.message.set(error.message ?? '');
+        this.status.set(error.status);
       },
     );
   }
