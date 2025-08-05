@@ -1,10 +1,11 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { IUsers, UsersResponse } from '../../models/users.models';
 import { PaginationService } from '../../services/pagination/pagination-service';
+import { NgxSkeletonLoaderComponent } from "ngx-skeleton-loader";
 
 @Component({
   selector: 'app-unfiltered',
-  imports: [],
+  imports: [NgxSkeletonLoaderComponent],
   templateUrl: './unfiltered.html',
   styleUrl: './unfiltered.scss',
 })
