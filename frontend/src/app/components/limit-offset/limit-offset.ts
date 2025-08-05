@@ -1,10 +1,11 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { PaginationService } from '../../services/pagination/pagination-service';
 import { IUsers, UsersResponse } from '../../models/users.models';
+import { NgxSkeletonLoaderComponent } from "ngx-skeleton-loader";
 
 @Component({
   selector: 'app-limit-offset',
-  imports: [],
+  imports: [NgxSkeletonLoaderComponent],
   templateUrl: './limit-offset.html',
   styleUrl: './limit-offset.scss',
 })
