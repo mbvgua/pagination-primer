@@ -1,10 +1,11 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { PaginationService } from '../../services/pagination/pagination-service';
 import { IUsers, UsersResponse } from '../../models/users.models';
+import { NgxSkeletonLoaderComponent } from "ngx-skeleton-loader";
 
 @Component({
   selector: 'app-cursor',
-  imports: [],
+  imports: [NgxSkeletonLoaderComponent],
   templateUrl: './cursor.html',
   styleUrl: './cursor.scss',
 })

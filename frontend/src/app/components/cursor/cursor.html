@@ -38,16 +38,28 @@
       </thead>
       <tbody>
         @for (user of users(); track user.id) {
+          <!--NOTE: first time I came across deferable views!!!-->
+          @defer {
+            <tr>
+              <td>{{ user.id }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.location }}</td>
+            </tr>
+          } @placeholder (minimum 2.5s) {
+            <tr>
+              <td><ngx-skeleton-loader /></td>
+              <td><ngx-skeleton-loader /></td>
+              <td><ngx-skeleton-loader /></td>
+              <td><ngx-skeleton-loader /></td>
+            </tr>
+          }
+        } @empty {
           <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.location }}</td>
+            <td colspan="8">Nothing to see here</td>
           </tr>
         }
       </tbody>
-
-      <tbody></tbody>
     </table>
   </div>
   <!--end table section-->
