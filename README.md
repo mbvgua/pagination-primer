@@ -36,3 +36,11 @@ We get the project up and running in the following steps:
 
 > [!NOTE]
 > All these commands have been run as a normal user, i.e `$`, there is no need to use sudo priviledges, i.e `#`
+
+# Project Setup with Docker
+
+To run the project with docker compose, clone the repo and navigate to the project root, then:
+
+```
+docker compose up
+```

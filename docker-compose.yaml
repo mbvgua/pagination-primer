@@ -1,0 +1,38 @@
+services:
+  frontend:
+    image: mbvgua/pagination-frontend
+    restart: unless-stopped
+    ports:
+      - "4200:4200"
+    container_name: pagination_frontend
+
+  backend:
+    image: mbvgua/pagination-backend
+    restart: unless-stopped
+    ports:
+     - "4000:4000"
+    container_name: pagination_backend
+    environment:
+      # NOTE: this var is passed to backned sqlConfig object host var
+      # allowinf it to connect to teh database container, since it
+      # cant access the db in the "localhost" container
+      - DB_HOST=${DB_HOST}
+    depends_on:
+      - database
+
+  database:
+    image: mysql:lts-oraclelinux9
+    restart: unless-stopped
+    ports:
+     - "3305:3306"
+    container_name: pagination_database
+    environment:
+     - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    # NOTE: got this: https://github.com/jeffjadulco/seeded-mysql-docker-compose
+    # allow seeding(insert dummy data) the db in advance
+    volumes:
+     - ./database/:/docker-entrypoint-initdb.d
+
+volumes:
+  database:
+
