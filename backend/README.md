@@ -19,8 +19,16 @@ pnpm install
 touch .env
 ```
 
-1. Next start the backend serve:
+1. Next start the backend server, (either in dev/prod mode):
 
 ```bash
-pnpm start
+pnpm start:dev
+```
+
+## Running with Docker
+
+To run the backend container with docker:
+
+```bash
+docker run mbvgua/pagination-backend
 ```

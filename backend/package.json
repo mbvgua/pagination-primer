@@ -4,9 +4,13 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start:build": "tsc -w",
-    "start:run": "nodemon dist/server.js",
-    "start": "concurrently pnpm:start:*"
+    "COMMENT":"dev environment",
+    "start:dev:build": "tsc -w",
+    "start:dev:run": "nodemon dist/server.js",
+    "start:dev": "concurrently pnpm:start:dev:*",
+    "COMMENT":"prod environment",
+    "start:prod:build":"tsc",
+    "start:prod":"node dist/server.js"
   },
   "keywords": [],
   "author": "",
